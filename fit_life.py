@@ -67,7 +67,7 @@ while True:
         print("Вы ввели не число или использовали запятую.")
 
 # Расчет ИМТ
-bmi = round(user_weight / (user_height ** 2),1)
+bmi = round(user_weight / (user_height ** 2), 1)
 # Расчет нормы воды в миллилитрах
 water_ml = user_weight * WATER_PER_KG
 # Перевод полученного значения нормы воды в литры
