@@ -8,27 +8,34 @@ MIN_WEIGHT = 0
 MAX_WEIGHT = 300
 MIN_HEIGHT = 0
 MAX_HEIGHT = 3
+SEPARATOR_CHAR = "*"
+SEPARATOR_CHAR_WIDTH = 50
+MSG_INVALID_RANGE = "Пожалуйста, проверьте введенные данные."
+MSG_INVALID_FORMAT = "Вы ввели не число или использовали запятую."
 
 print("Здравствуйте! Я ваш персональный бот FitLife!")
 
-# Запрашиваем имя пользователя, убираем лишние пробелы по краям
-# добавляем правку, если пользователь ввел имя с маленькой буквы
 user_name = input("Как вас зовут? ").strip().title()
+"""
+Запрашиваем имя пользователя,
+убираем лишние пробелы по краям
+добавляем правку, если пользователь ввел имя с маленькой буквы
 
+"""
 # Цикл для корректного получения данных о возрасте пользователя
 while True:
     try:
         # Запрашиваем возраст пользователя, убираем лишние пробелы по краям
-        user_age = int(input("Сколько вам полных лет? "))
+        user_age = int(input("Сколько вам полных лет?(например, 25) "))
 
         # Логическая проверка введенных данных
         if MIN_AGE < user_age < MAX_AGE:
             break
         else:
-            print("Пожалуйста, проверьте введенные данные")
+            print(MSG_INVALID_RANGE)
 
     except ValueError:
-        print("Ошибка. Вводите только целые числа (например, 25).")
+        print(MSG_INVALID_RANGE)
 
 print()
 print(f"Рад знакомству, {user_name}!")
@@ -45,11 +52,11 @@ while True:
         if MIN_WEIGHT < user_weight < MAX_WEIGHT:
             break
         else:
-            print("Пожалуйста, проверьте введенные данные.")
+            print(MSG_INVALID_RANGE)
 
     except ValueError:
         # Сюда мы попадаем, если были введены буквы, запятая и т.д.
-        print("Вы ввели не число или использовали запятую.")
+        print(MSG_INVALID_FORMAT)
 
 # Цикл для корректного получения данных о росте пользователя
 while True:
@@ -60,11 +67,11 @@ while True:
         if MIN_HEIGHT < user_height < MAX_HEIGHT:
             break
         else:
-            print("Пожалуйста, проверьте введенные данные.")
+            print(MSG_INVALID_RANGE)
 
     except ValueError:
         # Сюда мы попадаем, если были введены буквы, запятая и т.д.
-        print("Вы ввели не число или использовали запятую.")
+        print(MSG_INVALID_FORMAT)
 
 # Расчет ИМТ
 bmi = round(user_weight / (user_height ** 2), 1)
@@ -75,10 +82,10 @@ water_l = water_ml / ML_IN_LITER
 
 # Вывод результата
 print()
-print("*" * 50)
+print(SEPARATOR_CHAR * SEPARATOR_CHAR_WIDTH)
 print(f"Отчет для пользователя: {user_name}, {user_age} г.")
 print(f"Твой Индекс Массы Тела: {bmi}")
 print(f"Рекомендуемая норма воды: {water_l:.1f} л. в день")
-print("*" * 50)
+print(SEPARATOR_CHAR * SEPARATOR_CHAR_WIDTH)
 print()
 print("Расчет окончен. Будьте здоровы!")
